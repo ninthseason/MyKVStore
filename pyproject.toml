@@ -1,0 +1,16 @@
+[project]
+name = "mykvstore"
+version = "0.1.0"
+description = "A tiny key-value store backed by MongoDB, with dictionary-style access in Python."
+readme = "README.md"
+authors = [
+    { name = "Kl1nge5", email = "ninthseason@qq.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "pymongo>=4.16.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.18,<0.10.0"]
+build-backend = "uv_build"
