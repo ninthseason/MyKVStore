@@ -16,12 +16,12 @@ A tiny key-value store backed by MongoDB, with dictionary-style access in Python
 ## Installation
 ### With uv (recommended)
 ```bash
-uv sync
+uv add git+https://github.com/ninthseason/MyKVStore
 ```
 
 ### With pip
 ```bash
-pip install -e .
+pip install git+https://github.com/ninthseason/MyKVStore
 ```
 
 ## Configuration
@@ -84,3 +84,4 @@ Deletes one record matching the key. Missing keys are ignored.
 
 ## Notes
 - Values are stored in field `v`; keys are stored in field `k`.
+- Avoid committing real credentials in `.env` files.
