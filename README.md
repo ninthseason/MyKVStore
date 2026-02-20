@@ -8,6 +8,11 @@ A tiny key-value store backed by MongoDB, with dictionary-style access in Python
 - `del kvs[key]` deletes by key (no error if missing).
 - Uses a fixed database and collection name: `mykvstore`.
 
+## Performance Warning
+- This project is a simple utility layer, not a high-throughput KV engine.
+- `examples/perf_test.py` shows a sample run of about 9 seconds for 100 inserts.
+- Actual performance depends heavily on network latency, MongoDB deployment, and index setup.
+
 ## Requirements
 - Python 3.14+
 - MongoDB connection URI
@@ -84,4 +89,3 @@ Deletes one record matching the key. Missing keys are ignored.
 
 ## Notes
 - Values are stored in field `v`; keys are stored in field `k`.
-- Avoid committing real credentials in `.env` files.
