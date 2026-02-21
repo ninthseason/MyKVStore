@@ -1,7 +1,12 @@
 from pymongo import MongoClient
+import os
 
 class KVStore:
-    def __init__(self, uri: str) -> None:
+    def __init__(self, uri: str | None = None) -> None:
+        if uri is None:
+            uri = os.getenv("MONGO_URI")
+            if uri is None:
+                raise RuntimeError("Argument `uri` does not specify and can't read `MONGO_URI` from environment variables.")
         self.client = MongoClient(uri)
         self.db = self.client.get_database("mykvstore")
         self.collection = self.db.get_collection("mykvstore")

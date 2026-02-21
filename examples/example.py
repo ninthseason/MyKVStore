@@ -1,12 +1,6 @@
 from mykvstore import KVStore
-import os
 
-uri = os.getenv("MONGO_URI")
-if uri is None:
-    print("Can't read `MONGO_URI` from environment varibles.")
-    exit(1)
-
-kvs = KVStore(uri)
+kvs = KVStore()
 
 # delete a non-existent entry will do nothing
 del kvs["example"]
