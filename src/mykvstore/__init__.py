@@ -30,7 +30,7 @@ class KVStore:
         uri = os.getenv("MONGO_URI")
         if uri is None and find_spec("google") is not None:  # in google colab
             from google.colab import userdata  # type: ignore
-            userdata.get("MONGO_URI")
+            uri = userdata.get("MONGO_URI")
         if uri is None:
             raise RuntimeError("Can't get default uri from `MONGO_URI` environment variable or `MONGO_URI` google colab secrets.")
         return uri
