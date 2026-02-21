@@ -4,6 +4,12 @@ import os
 
 class KVStore:
     def __init__(self, uri: str | None = None) -> None:
+        """Initialize KVStore with a MongoDB URI.
+
+        If `uri` is `None`, this method resolves `MONGO_URI` in order from:
+        1. The local environment variable.
+        2. Google Colab secrets. (When in google colab environment)
+        """
         if uri is None:
             uri = self.default_uri()
         self.client = MongoClient(uri)
