@@ -1,12 +1,11 @@
 from pymongo import MongoClient
+from importlib.util import find_spec
 import os
 
 class KVStore:
     def __init__(self, uri: str | None = None) -> None:
         if uri is None:
-            uri = os.getenv("MONGO_URI")
-            if uri is None:
-                raise RuntimeError("Argument `uri` does not specify and can't read `MONGO_URI` from environment variables.")
+            uri = self.default_uri()
         self.client = MongoClient(uri)
         self.db = self.client.get_database("mykvstore")
         self.collection = self.db.get_collection("mykvstore")
@@ -25,3 +24,13 @@ class KVStore:
 
     def __delitem__(self, key):
         self.collection.delete_one({"k": key})
+
+    @staticmethod
+    def default_uri() -> str:
+        uri = os.getenv("MONGO_URI")
+        if uri is None and find_spec("google") is not None:  # in google colab
+            from google.colab import userdata  # type: ignore
+            userdata.get("MONGO_URI")
+        if uri is None:
+            raise RuntimeError("Can't get default uri from `MONGO_URI` environment variable or `MONGO_URI` google colab secrets.")
+        return uri
