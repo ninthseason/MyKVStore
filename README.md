@@ -10,7 +10,7 @@ A tiny key-value store backed by MongoDB, with dictionary-style access in Python
 
 ## Performance Warning
 - This project is a simple utility layer, not a high-throughput KV engine.
-- `examples/perf_test.py` shows a sample run of about 9 seconds for 100 inserts.
+- `examples/perf_test.py` shows a sample run of about 9 seconds for 100 inserts. (Test in MongoDB Atlas free tier)
 - Actual performance depends heavily on network latency, MongoDB deployment, and index setup.
 
 ## Requirements
