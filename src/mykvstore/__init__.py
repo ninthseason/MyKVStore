@@ -17,7 +17,7 @@ class KVStore:
         self.collection = self.db.get_collection("mykvstore")
 
 
-    def __getitem__(self, key) -> dict | None:
+    def __getitem__(self, key):
         e = self.collection.find_one({"k": key})
         return None if e is None else e["v"]
 
