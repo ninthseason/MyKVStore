@@ -8,7 +8,8 @@ class KVStore:
 
 
     def __getitem__(self, key) -> dict | None:
-        return self.collection.find_one({"k": key})
+        e = self.collection.find_one({"k": key})
+        return None if e is None else e["v"]
 
     
     def __setitem__(self, key, value):
